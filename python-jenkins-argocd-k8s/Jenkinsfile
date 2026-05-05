@@ -16,16 +16,24 @@ pipeline {
            }
         }
 
-        stage('Build Docker'){
-            steps{
-                script{
-                    sh '''
-                    echo 'Buid Docker Image'
-                    docker build -t abhishekf5/cicd-e2e:${BUILD_NUMBER} .
-                    '''
-                }
-            }
-        }
+        // stage('Build Docker'){
+        //     steps{
+        //         script{
+        //             sh '''
+        //             echo 'Buid Docker Image'
+        //             docker build -t abhishekf5/cicd-e2e:${BUILD_NUMBER} .
+        //             '''
+        //         }
+        //     }
+        // }
+
+        stage('Build Docker') {
+    script {
+        // Change the path to where your Dockerfile actually lives
+        sh "docker build -t abhishekf5/cicd-e2e:1 ./python-jenkins-argocd-k8s/"
+    }
+}
+
 
         stage('Push the artifacts'){
            steps{
